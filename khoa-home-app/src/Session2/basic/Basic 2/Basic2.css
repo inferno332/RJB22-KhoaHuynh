@@ -7,7 +7,7 @@
     border: 1px solid rgb(167, 166, 166);
 }
 
-img {
+.wrapper img {
     max-width: 220px;
     display: flex;
     margin: auto;

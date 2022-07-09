@@ -5,14 +5,14 @@
     border: 1px solid rgb(167, 166, 166);
 }
 
-h1 {
+.wrapper1 h1 {
     font-size: 1.4rem;
     font-weight: 400;
 }
-img {
+.wrapper1 img {
     width: 100%;
 }
-p{
+.wrapper1 p{
     color: #888;
     margin-bottom: 4px;
     font-size: 1rem;
