@@ -6,16 +6,12 @@ import Intro from './Session1/Intro/Intro';
 import ChartBar1 from './Session2/block-ui/BlockUI1/ChartBar1';
 import SocialBlock from './Session2/block-ui/BlockUI3/SocialBlock';
 import ChartColumn from './Session2/block-ui/BlockUI4/ChartColumn';
+import LikeButton from './Session3/LikeButton/LikeButton';
 
 function App() {
   return (
     <>
-      <ChartColumn
-        text = 'total visitor'
-        total = '290302'
-        unit= '$'
-        percentage = {[20, 45, 30, 80, 75]}
-      ></ChartColumn>
+      <LikeButton></LikeButton>
     </>
   );
 }
