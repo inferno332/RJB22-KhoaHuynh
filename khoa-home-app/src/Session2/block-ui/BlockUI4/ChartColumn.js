@@ -4,6 +4,32 @@ import "./ChartColumn.css";
 
 export default function ChartColumn(props) {
   const { text, total, unit, percentage } = props;
+  let barInfo = [{
+      day: 'MON',
+      bgcolor: '#dd4e5c',
+      percen: percentage[0],
+    },
+    {
+      day: 'TUE',
+      bgcolor: '##3ed761',
+      percen: percentage[1],
+    },
+    {
+      day: 'WED',
+      bgcolor: '#5fd9ed',
+      percen: percentage[2],
+    },
+    {
+      day: 'THU',
+      bgcolor: '#f3ce5e',
+      percen: percentage[3],
+    },
+    {
+      day: 'FRI',
+      bgcolor: '#f9943f',
+      percen: percentage[4],
+    },
+  ]
   return (
     <div className="cc-block m-5">
       <div className="d-flex flex-column align-items-center cc-head">
@@ -18,57 +44,23 @@ export default function ChartColumn(props) {
         </h2>
       </div>
       <div className="d-flex cc-foot">
-        <div className="cc-foot__progressbar d-flex flex-column align-items-center">
-          <div className="progress progress-bar-vertical">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{backgroundColor: '#dd4e5c' ,height: `${percentage[0]}%` }}
-            ></div>
-          </div>
-          <span>MON</span>
-        </div>
-        <div className="cc-foot__progressbar d-flex flex-column align-items-center">
-          <div className="progress progress-bar-vertical">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{backgroundColor: '#3ed761' ,height: `${percentage[1]}%` }}
-            ></div>
-          </div>
-          <span>TUE</span>
-        </div>
-        <div className="cc-foot__progressbar d-flex flex-column align-items-center">
-          <div className="progress progress-bar-vertical">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{backgroundColor: '#f3ce5e' ,height: `${percentage[2]}%` }}
-            ></div>
-          </div>
-          <span>WED</span>
-        </div>
-        <div className="cc-foot__progressbar d-flex flex-column align-items-center">
-          <div className="progress progress-bar-vertical">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{backgroundColor: '#5fd9ed' ,height: `${percentage[3]}%` }}
-            ></div>
-          </div>
-          <span>THU</span>
-        </div>
-        <div className="cc-foot__progressbar d-flex flex-column align-items-center">
-          <div className="progress progress-bar-vertical">
-            <div
-              className="progress-bar"
-              role="progressbar"
-              style={{backgroundColor: '#f9943f' ,height: `${percentage[4]}%` }}
-            ></div>
-          </div>
-          <span>FRI</span>
-        </div>
+           {barInfo.map((barInfo,i) => columnBar(barInfo))}
       </div>
+    </div>
+  );
+}
+
+function columnBar(barInfo) {
+  return (
+    <div className="cc-foot__progressbar d-flex flex-column align-items-center">
+          <div className="progress progress-bar-vertical">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              style={{backgroundColor: `${barInfo.bgcolor}` ,height: `${barInfo.percen}%` }}
+            ></div>
+          </div>
+          <span>{barInfo.day}</span>
     </div>
   );
 }
