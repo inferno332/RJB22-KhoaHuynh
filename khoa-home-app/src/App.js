@@ -7,7 +7,7 @@ import ChartBar1 from './Session2/block-ui/BlockUI1/ChartBar1';
 import SocialBlock from './Session2/block-ui/BlockUI3/SocialBlock';
 import ChartColumn from './Session2/block-ui/BlockUI4/ChartColumn';
 import LikeButton from './Session3/LikeButton/LikeButton';
-
+import RatingButton from './Session3/RatingButton/RatingButton';
 function App() {
   return (
     <>
@@ -49,7 +49,9 @@ function App() {
           percentage = {[24, 50, 42, 44, 80]}
           ></ChartColumn> */}
 
-      <LikeButton></LikeButton>
+      {/* <LikeButton></LikeButton> */}
+
+      <RatingButton></RatingButton>
     </>
   );
 }
