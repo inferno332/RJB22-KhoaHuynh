@@ -21,7 +21,7 @@ function App() {
           category4 = 'asdad'
       ></Basic1> */}
 
-      <Basic2></Basic2>
+      {/* <Basic2></Basic2> */}
 
       {/* <ChartBar1
           text ='charbar'
@@ -49,7 +49,7 @@ function App() {
           percentage = {[24, 50, 42, 44, 80]}
           ></ChartColumn> */}
 
-      {/* <LikeButton></LikeButton> */}
+      <LikeButton></LikeButton>
     </>
   );
 }
