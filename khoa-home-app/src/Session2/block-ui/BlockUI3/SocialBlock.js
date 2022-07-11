@@ -11,7 +11,7 @@ export default function SocialBlock(props) {
         unit,
       } = props;
     return (
-      <div className='sb-block' style={{backgroundColor: `#${color}`}}>
+      <div className='sb-block' style={{backgroundColor: `${color}`}}>
         <div className='h-100 d-flex justify-content-between flex-column'>
           <i class={`${iconName}`} style={{fontSize: '4rem'}}></i>
           

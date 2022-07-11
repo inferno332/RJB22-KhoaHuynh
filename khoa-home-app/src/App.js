@@ -11,7 +11,45 @@ import LikeButton from './Session3/LikeButton/LikeButton';
 function App() {
   return (
     <>
-      <LikeButton></LikeButton>
+      {/* <Intro></Intro> */}
+      {/* <Basic1
+          imageUrl = '/images/basic-images/1.jpg'
+          heading = 'Shirt'
+          category1 = 'asdad'
+          category2 = 'asdasd'
+          category3 = 'asdsdad'
+          category4 = 'asdad'
+      ></Basic1> */}
+
+      <Basic2></Basic2>
+
+      {/* <ChartBar1
+          text ='charbar'
+          percentage={20}
+          color= '#17a2b8'
+      ></ChartBar1>
+      <ChartBar1
+          text ='charbar2'
+          percentage={50}
+          color= '#dc3545'
+      ></ChartBar1> */}
+
+      {/* <SocialBlock
+          text ='Facebook'
+          color ='#007bff'
+          iconName ='fa-brands fa-facebook-f'
+          total ='3000000'
+          unit ='Likes'
+      ></SocialBlock> */}
+
+      {/* <ChartColumn 
+          text = 'TODAY VISITOR'
+          total = {24999}
+          unit = '$'
+          percentage = {[24, 50, 42, 44, 80]}
+          ></ChartColumn> */}
+
+      {/* <LikeButton></LikeButton> */}
     </>
   );
 }

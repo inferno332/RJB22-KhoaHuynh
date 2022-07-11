@@ -3,6 +3,22 @@ import './Basic2.css'
 
 
 export default function basic2() {
+    
+
+    const renderStar = (star) => {
+        let content = [];
+
+        for (let index = 0; index < star; index++) {
+            content.push(<i className="fa-regular fa-star checked"></i>);
+        }
+
+        for (let index = star; index < 5; index++) {
+            content.push(<i className="fa-regular fa-star"></i>);
+        }
+
+        return content;
+    }
+
     return (
     <>
         <div className='wrapper'>
@@ -13,11 +29,7 @@ export default function basic2() {
             <div className='foot'>
                 <p>Samsung UHD TV 24inch</p>
                 <div className='rating'>
-                    <i class="fa-regular fa-star checked"></i>
-                    <i class="fa-regular fa-star checked"></i>
-                    <i class="fa-regular fa-star checked"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                    <div>{renderStar(4)}</div>
                     <span>02</span>
                 </div>
                 <div className='price'>$599</div>
