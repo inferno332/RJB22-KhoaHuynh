@@ -44,7 +44,7 @@ export default function ChartColumn(props) {
         </h2>
       </div>
       <div className="d-flex cc-foot">
-           {barInfo.map((barInfo,i) => columnBar(barInfo))}
+           {barInfo.map((items,i) => columnBar(items))}
       </div>
     </div>
   );

@@ -6,36 +6,42 @@ export default class RatingButton extends Component {
         super(props);
 
         this.state = {
-            star: 0,
-            items: [1,2,3,4,5]
+            rating: 0,
         };
 
+        this.setRating = this.setRating.bind(this);
     }
     
-    
+    setRating(num) {
+        this.setState({rating: num})
+    }
+
+    StarRating = () => {
+        return (
+          <div className="star-rating">
+            {[...Array(5)].map((arr,index) => {        
+              index +=1;
+              console.log(`rating: ${this.state.rating}`);
+              console.log(`index: ${index}`);
+              return (         
+                  <button
+                  type='button'
+                  key={index}
+                  className={index <= this.state.rating ? 'on' : 'off'}
+                  onClick={() => this.setRating(index)}
+                  ><span className="star">&#9733;</span>
+                </button>
+              );
+            })}
+          </div>
+        );
+    };
     
     render() {
         return (
             <div>
-            {this.state.items.map((item) => {
-                if (item <= this.state.star) {
-                    <i 
-                    onClick={() => this.setState({star: item})}
-                    style ={{color: 'blue', cursor: 'pointer'}} 
-                    className="m-5 fa-4x fa-regular fa-thumbs-up">
-                    </i>
-                };
-                // console.log(`item: ${item}`)
-                return (
-                    <i 
-                    onClick={() => this.setState({star: item})}
-                    style ={{color: 'black', cursor: 'pointer'}} 
-                    className="m-5 fa-4x fa-regular fa-thumbs-up">
-                    </i>
-                );
-            })}
-            {console.log(this.state.star)}
-      </div>
+                {this.StarRating()}
+            </div>
     )
   }
 }

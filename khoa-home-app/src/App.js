@@ -8,6 +8,7 @@ import SocialBlock from './Session2/block-ui/BlockUI3/SocialBlock';
 import ChartColumn from './Session2/block-ui/BlockUI4/ChartColumn';
 import LikeButton from './Session3/LikeButton/LikeButton';
 import RatingButton from './Session3/RatingButton/RatingButton';
+import Tabs from './Session3/TABS';
 function App() {
   return (
     <>
@@ -51,7 +52,9 @@ function App() {
 
       {/* <LikeButton></LikeButton> */}
 
-      <RatingButton></RatingButton>
+      {/* <RatingButton></RatingButton> */}
+
+      <Tabs></Tabs>
     </>
   );
 }
