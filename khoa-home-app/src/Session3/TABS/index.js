@@ -10,7 +10,7 @@ export default function Tabs() {
   const [activeTab, setActiveTab] = useState();
   let items = ['HISTORY', 'APPROACH', 'CULTURE', 'METHOD'];
   return (
-    <div className="Tabs">
+    <div className="Tabs col-md-8">
       <ul className="nav">
         {items.map((item,index) => {
             index +=1;
