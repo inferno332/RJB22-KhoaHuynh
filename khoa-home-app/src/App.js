@@ -9,6 +9,7 @@ import ChartColumn from './Session2/block-ui/BlockUI4/ChartColumn';
 import LikeButton from './Session3/LikeButton/LikeButton';
 import RatingButton from './Session3/RatingButton/RatingButton';
 import Tabs from './Session3/TABS';
+import Accordions from './Session3/Accordions/Accordions';
 function App() {
   return (
     <>
@@ -54,7 +55,9 @@ function App() {
 
       {/* <RatingButton></RatingButton> */}
 
-      <Tabs></Tabs>
+      {/* <Tabs></Tabs> */}
+
+      <Accordions/>
     </>
   );
 }
