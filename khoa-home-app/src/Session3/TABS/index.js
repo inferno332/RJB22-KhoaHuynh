@@ -25,31 +25,6 @@ export default function Tabs() {
             );
         })
         }
-        {/* <li 
-            className={activeTab === "Tab1" ? "active" : ""}
-            onClick={() => setActiveTab('Tab1')}
-        >
-          HISTORY
-        </li>
-        
-        <li 
-            className={activeTab === "Tab2" ? "active" : ""}
-            onClick={() => setActiveTab('Tab2')}
-        >
-          APPROACH
-        </li>
-        <li 
-            className={activeTab === "Tab3" ? "active" : ""}
-            onClick={() => setActiveTab('Tab3')}
-        >
-          CULTURE
-        </li>
-        <li 
-            className={activeTab === "Tab4" ? "active" : ""}
-            onClick={() => setActiveTab('Tab4')}
-        >
-          METHOD
-        </li> */}
       </ul>
       <div className="content col-12">
           {(activeTab === 'Tab1') && 

@@ -10,6 +10,7 @@ import LikeButton from './Session3/LikeButton/LikeButton';
 import RatingButton from './Session3/RatingButton/RatingButton';
 import Tabs from './Session3/TABS';
 import Accordions from './Session3/Accordions/Accordions';
+import ImageSlider from './Session3/ImageSlider/ImageSlider';
 function App() {
   return (
     <>
@@ -57,7 +58,9 @@ function App() {
 
       {/* <Tabs></Tabs> */}
 
-      <Accordions/>
+      {/* <Accordions/> */}
+      
+      <ImageSlider/>
     </>
   );
 }
