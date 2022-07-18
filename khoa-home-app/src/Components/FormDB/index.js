@@ -15,7 +15,7 @@ export default function FormDB() {
 
   async function fetchData() {
     try {
-      let response = await axios("https://provinces.open-api.vn/api/");
+      let response = await axios("https://provinces.open-api.vn/api/?depth=3");
       let tempCities = await response.data;
       console.log(response);
       setCities(tempCities);
@@ -33,86 +33,117 @@ export default function FormDB() {
 
   return (
     <>
-      <div className="form-wrapper m-5">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="row">
-            <div className="col-6 flex-column">
-              <label>Email</label>
-              <input
-                placeholder="Email"
-                {...register("mail", {
-                  required: true,
-                  pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
-                })}
-              />
-              {errors.mail && <p>This field is required</p>}
-            </div>
-            <div className="col-6 flex-column">
-              <label>Password</label>
-              <input
-                {...register("password", {
-                  required: true,
-                })}
-              />
-              {errors.password && <p>This field is required</p>}
-            </div>
-          </div>
-
-          <div className="d-flex flex-column">
-            <label>Address 1</label>
+      <div className="w-50 m-auto">
+        <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
+          <div className="col-6">
+            <label className="form-label">Email</label>
             <input
+              className="form-control"
+              placeholder="Email"
+              {...register("mail", {
+                required: true,
+                pattern: /[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$/,
+              })}
+            />
+            {/* {errors.mail && <p>This field is required</p>} */}
+            <p>
+              {errors.mail?.type === "pattern"
+                ? "Please input invalid email type"
+                : ""}
+            </p>
+          </div>
+          <div className="col-6">
+            <label className="form-label">Password</label>
+            <input
+              className="form-control"
+              type="password"
+              {...register("password", {
+                required: true,
+              })}
+            />
+            {errors.password && <p>This field is required</p>}
+          </div>
+          <div className="col-12">
+            <label className="form-label">Address 1</label>
+            <input
+              className="form-control"
               placeholder="Address 1"
               {...register("address1", { required: true })}
             />
             {errors.address1 && <p>This field is required</p>}
           </div>
-
-          <div className="d-flex flex-column">
-            <label>Address 2</label>
+          <div className="col-12">
+            <label className="form-label">Address 2</label>
             <input
+              className="form-control"
               placeholder="Address 2"
-              {...register("address2", { required: true })}
+              {...register("address2", { required: false })}
             />
             {errors.address2 && <p>This field is required</p>}
           </div>
 
-          <div className="row">
-            <div className="d-flex flex-column">
-              <label>Tỉnh thành</label>
-              <select
-                defaultValue="2"
-                {...register("city", { required: true })}
-              >
-                {cities.map(({ name }, index) => {
-                  return (
-                    <option key={index} value={name}>
-                      {name}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-
-            <div className="d-flex flex-column">
-              <label>Tỉnh thành</label>
-              <select
-                defaultValue="2"
-                {...register("city", { required: true })}
-              >
-                {cities.map(({ name }, index) => {
-                  return (
-                    <option key={index} value={name}>
-                      {name}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
+          {/* Chọn tỉnh */}
+          <div className="col-4">
+            <label className="form-label">Tỉnh thành</label>
+            <select
+              className="form-control"
+              defaultValue=""
+              {...register("city", { required: true })}
+            >
+              <option value="">Choose...</option>
+              {cities.map((city) => {
+                return <option key={city.code}>{city.name}</option>;
+              })}
+            </select>
+          </div>
+          {/* Chọn quận */}
+          <div className="col-4">
+            <label className="form-label">Quận</label>
+            <select
+              className="form-control"
+              defaultValue=""
+              {...register("district", { required: true })}
+            >
+              <option value="">Choose</option>
+              {cities.map((city) => {
+                return city.name === citiesWatch
+                  ? city.districts.map((district) => {
+                      return (
+                        <option key={district.code}>{district.name}</option>
+                      );
+                    })
+                  : null;
+              })}
+            </select>
+          </div>
+          {/* Chọn huyện */}
+          <div className="col-4">
+            <label className="form-label">Huyện</label>
+            <select
+              className="form-control"
+              defaultValue=""
+              {...register("ward", { required: true })}
+            >
+              <option value="">Choose</option>
+              {cities.map((city) => {
+                return city.name === citiesWatch
+                  ? city.districts.map((district) => {
+                      return district.name === districtsWatch
+                        ? district.wards.map((ward) => {
+                            return <option key={ward.code}>{ward.name}</option>;
+                          })
+                        : null;
+                    })
+                  : null;
+              })}
+            </select>
           </div>
 
-          <button type="submit" className="btn btn-primary">
-            Sign in
-          </button>
+          <div className="col-12">
+            <button type="submit" className="btn btn-primary">
+              Sign in
+            </button>
+          </div>
         </form>
       </div>
     </>
