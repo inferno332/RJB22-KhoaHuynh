@@ -11,10 +11,13 @@ import RatingButton from './Session3/RatingButton/RatingButton';
 import Tabs from './Session3/TABS';
 import Accordions from './Session3/Accordions/Accordions';
 import ImageSlider from './Session3/ImageSlider/ImageSlider';
-import SimpleForm from './Form Example/SimpleForm';
+import SimpleForm from './Components/Form Example/SimpleForm';
 
 import axios from 'axios';
 import UseEffect from './Components/useEffect';
+import FormDB from './Components/FormDB/index';
+
+// set base
 axios.defaults.baseURL = 'https://62d16f46d4eb6c69e7dd5d81.mockapi.io/'
 
 function App() {
@@ -70,7 +73,9 @@ function App() {
 
       {/* <SimpleForm/> */}
 
-      <UseEffect/>
+      {/* <UseEffect/> */}
+
+      <FormDB/>
     </>
   );
 }
