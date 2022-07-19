@@ -24,12 +24,13 @@ export default function FormDB() {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
   const citiesWatch = watch("city");
   const districtsWatch = watch("district");
   const onSubmit = (data) => console.log(data);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -46,11 +47,7 @@ export default function FormDB() {
               })}
             />
             {/* {errors.mail && <p>This field is required</p>} */}
-            <p>
-              {errors.mail?.type === "pattern"
-                ? "Please input invalid email type"
-                : ""}
-            </p>
+            <p>{errors.mail ? "Please input valid email type" : ""}</p>
           </div>
           <div className="col-6">
             <label className="form-label">Password</label>
