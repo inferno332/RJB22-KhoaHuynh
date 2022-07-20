@@ -16,6 +16,7 @@ import SimpleForm from './Components/Form Example/SimpleForm';
 import axios from 'axios';
 import UseEffect from './Components/useEffect';
 import FormDB from './Components/FormDB/index';
+import TodoList from './Components/TodoList/TodoList';
 
 // set base
 axios.defaults.baseURL = 'https://62d16f46d4eb6c69e7dd5d81.mockapi.io/'
@@ -75,7 +76,9 @@ function App() {
 
       {/* <UseEffect/> */}
 
-      <FormDB/>
+      {/* <FormDB/> */}
+
+      <TodoList/>
     </>
   );
 }
