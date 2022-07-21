@@ -3,30 +3,30 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
-    <div>
-      <ul className="nav">
-        <li className="nav-item">
+    <nav className="navbar navbar-expand-sm bg-light navbar-light">
+      <ul className="container-fluid navbar-nav">
+        <li className="nav-item col">
           <Link className="nav-link active" aria-current="page" to='/'>
             Active
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item col">
           <Link className="nav-link" to='/customerForm'>
             Customer Form
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item col">
           <Link className="nav-link" to='/customerList'>
             Customer List
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item col">
           <Link className="nav-link" to='/product'>
             Product
           </Link>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 

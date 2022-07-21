@@ -13,6 +13,7 @@ export default function Session8() {
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/customerForm' element={<CustomerForm/>}/>
+                <Route path='/customerForm/edit/:id' element={<CustomerForm/>}/>
                 <Route path='/customerList' element={<CustomerList/>}/>
                 <Route path='/product' element={<Product/>}/>
                 <Route path='*' element={
