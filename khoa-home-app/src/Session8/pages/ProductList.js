@@ -7,17 +7,16 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { Alert } from "@mui/material";
 
-
-export default function CustomerList() {
-  const [customers, setCustomers] = useState([]);
+export default function ProductList() {
+  const [products, setProducts] = useState([]);
   const [open, setOpen] = React.useState(false);
-  let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/";
+  let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/products/";
   async function fetchData() {
     try {
       let response = await axios.get(url);
-      let tempCustomers = await response.data;
-      setCustomers(tempCustomers);
-      // console.log(customers);
+      let tempProducts = await response.data;
+      setProducts(tempProducts);
+      console.log(products);
     } catch (err) {
       console.log("Error: ", err.message);
     }
@@ -64,34 +63,36 @@ export default function CustomerList() {
   );
 
   return (
-    <>
-      <h1 className="my-5">CUSTOMER LIST</h1>
-      <table className="table table-striped table-borderless">
+    <div>
+      <h1 className="my-5">PRODUCT LIST</h1>
+      <table className="table table-borderless table-striped">
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Address</th>
-            <th scope="col">City</th>
-            <th scope="col">Phone</th>
+            <th scope="col">Color</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
             <th scope="col">Feature</th>
           </tr>
         </thead>
         <tbody>
-          {customers.map((customer, index) => (
-            <tr key={customer.id}>
-              <th scope="row">{customer.id}</th>
-              <td>{customer.name}</td>
-              <td>{customer.email}</td>
-              <td>{customer.address}</td>
-              <td>{customer.city}</td>
-              <td>{customer.phone}</td>
+          {products.map((product, index) => (
+            <tr key={product.id}>
+              <th scope="row">{product.id}</th>
+              <td>
+                <span
+                  style={{ backgroundColor: `${product.color}` }}
+                  class="dot"
+                ></span>{" "}
+                {product.color}
+              </td>
+              <td>{product.price}</td>
+              <td>{product.description}</td>
               <td>
                 <Link
                   type="button"
                   className="btn btn-success mx-3"
-                  to={`/customerForm/edit/${customer.id}`}
+                  to={`/productForm/edit/${product.id}`}
                 >
                   Edit
                 </Link>
@@ -99,7 +100,7 @@ export default function CustomerList() {
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={(e) => deleteData(customer.id, e)}
+                    onClick={(e) => deleteData(product.id, e)}
                   >
                     Delete
                   </button>
@@ -124,6 +125,6 @@ export default function CustomerList() {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
