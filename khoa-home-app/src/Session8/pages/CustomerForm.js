@@ -25,6 +25,8 @@ export default function CustomerForm() {
     }
   }
   // fetch Customers Form from List
+  let urlCustomer =
+    "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/" + id;
   async function fetchDataCustomerList(urlCustomer) {
     try {
       let response = await axios.get(urlCustomer);
@@ -33,7 +35,7 @@ export default function CustomerForm() {
       if (id) {
         setValue("name", tempCustomers?.name);
         setValue("mail", tempCustomers?.email);
-        setValue("address1", tempCustomers?.address);
+        setValue("address1", tempCustomers?.address); 
       }
       return tempCustomers;
     } catch (err) {
@@ -43,8 +45,6 @@ export default function CustomerForm() {
 
   const citiesWatch = watch("city");
   const districtsWatch = watch("district");
-  let urlCustomer =
-    "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/" + id;
   let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/";
 
   useEffect(() => {
