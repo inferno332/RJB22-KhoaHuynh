@@ -64,67 +64,69 @@ export default function ProductList() {
 
   return (
     <div>
-      <h1 className="my-5">PRODUCT LIST</h1>
-      <table className="table table-borderless table-striped">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Color</th>
-            <th scope="col">Price</th>
-            <th scope="col">Description</th>
-            <th scope="col">Feature</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product, index) => (
-            <tr key={product.id}>
-              <th scope="row">{product.id}</th>
-              <td>
-                <span
-                  style={{ backgroundColor: `${product.color}` }}
-                  class="dot"
-                ></span>{" "}
-                {product.color}
-              </td>
-              <td>{product.price}</td>
-              <td>{product.description}</td>
-              <td>
-                <Link
-                  type="button"
-                  className="btn btn-success mx-3"
-                  to={`/productForm/edit/${product.id}`}
-                >
-                  Edit
-                </Link>
-                <div className="d-inline-block">
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={(e) => deleteData(product.id, e)}
-                  >
-                    Delete
-                  </button>
-                  <Snackbar
-                    open={open}
-                    autoHideDuration={3000}
-                    message="Delete Successful"
-                    variant="outlined"
-                    action={action}
-                  >
-                    <Alert
-                      onClose={handleClose}
-                      severity="success"
-                      sx={{ width: "100%" }}
-                    >
-                      Successfully deleted!
-                    </Alert>
-                  </Snackbar>
-                </div>
-              </td>
+      <h1 className="my-5 text-white">PRODUCT LIST</h1>
+      <div className="card py-4 m-auto">
+        <table className="table table-light table-borderless table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Color</th>
+              <th scope="col">Price</th>
+              <th scope="col">Description</th>
+              <th scope="col">Feature</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product, index) => (
+              <tr key={product.id}>
+                <th scope="row">{product.id}</th>
+                <td className="position-relative">
+                  <span
+                    style={{ backgroundColor: `${product.color}` }}
+                    class="dot"
+                  ></span>{" "}
+                  {product.color}
+                </td>
+                <td>{product.price}</td>
+                <td>{product.description}</td>
+                <td>
+                  <Link
+                    type="button"
+                    className="btn btn-success mx-3"
+                    to={`/productForm/edit/${product.id}`}
+                  >
+                    Edit
+                  </Link>
+                  <div className="d-inline-block">
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={(e) => deleteData(product.id, e)}
+                    >
+                      Delete
+                    </button>
+                    <Snackbar
+                      open={open}
+                      autoHideDuration={3000}
+                      message="Delete Successful"
+                      variant="outlined"
+                      action={action}
+                    >
+                      <Alert
+                        onClose={handleClose}
+                        severity="success"
+                        sx={{ width: "100%" }}
+                      >
+                        Successfully deleted!
+                      </Alert>
+                    </Snackbar>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
