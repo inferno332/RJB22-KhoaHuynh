@@ -20,6 +20,7 @@ import TodoList from './Components/TodoList/TodoList';
 import LinkTest from './Components/React Router/Link';
 import Session8 from './Session8';
 import Navigation from './Session8/components/Navigation';
+import Customer from './ReduxPractice';
 
 // set base
 axios.defaults.baseURL = 'https://62d16f46d4eb6c69e7dd5d81.mockapi.io/'
@@ -85,7 +86,9 @@ function App() {
 
       {/* <LinkTest/> */}
 
-      <Session8/>
+      {/* <Session8/> */}
+
+      <Customer/>
     </>
   );
 }
