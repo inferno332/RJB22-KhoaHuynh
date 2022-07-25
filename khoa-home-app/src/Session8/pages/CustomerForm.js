@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 export default function CustomerForm() {
   let { id } = useParams();
-  const [cities, setCities] = useState([]);
 
   const {
     register,
@@ -14,17 +13,8 @@ export default function CustomerForm() {
     setValue,
     formState: { errors },
   } = useForm();
-  // fetch City Data
-  async function fetchDataCities() {
-    try {
-      let response = await axios("https://provinces.open-api.vn/api/?depth=3");
-      let tempCities = await response.data;
-      setCities(tempCities);
-    } catch (err) {
-      console.log("Error: ", err.message);
-    }
-  }
   // fetch Customers Form from List
+  let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/";
   let urlCustomer =
     "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/" + id;
   async function fetchDataCustomerList(urlCustomer) {
@@ -35,7 +25,10 @@ export default function CustomerForm() {
       if (id) {
         setValue("name", tempCustomers?.name);
         setValue("mail", tempCustomers?.email);
-        setValue("address1", tempCustomers?.address); 
+        setValue("address1", tempCustomers?.address);
+        setValue("phone", tempCustomers?.phone);
+        setValue("city", tempCustomers?.city);
+        setValue("postcode", tempCustomers?.postCode);
       }
       return tempCustomers;
     } catch (err) {
@@ -43,16 +36,11 @@ export default function CustomerForm() {
     }
   }
 
-  const citiesWatch = watch("city");
-  const districtsWatch = watch("district");
-  let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/";
-
   useEffect(() => {
     if (id) {
       let tempCustomers = fetchDataCustomerList(urlCustomer);
       tempCustomers.then((response) => response);
     }
-    fetchDataCities();
   }, []);
 
   const onSubmit = (data, e) => {
@@ -69,17 +57,8 @@ export default function CustomerForm() {
   };
 
   const postData = (data) => {
-    let createData = {
-      name: data?.name,
-      postCode: "55000",
-      address: data?.address1,
-      dob: "05/03/1997",
-      email: data?.mail,
-      gender: "male",
-      phone: "1-832-736-9208 x651",
-    };
     axios
-      .post(url, createData)
+      .post(url, data)
       .then(function (response) {
         console.log(response);
       })
@@ -89,17 +68,8 @@ export default function CustomerForm() {
   };
 
   const putData = (data) => {
-    let updateData = {
-      name: data?.name,
-      postCode: "55000",
-      address: data?.address1,
-      dob: "05/03/1997",
-      email: data?.mail,
-      gender: "male",
-      phone: "1-832-736-9208 x651",
-    };
     axios
-      .put(urlCustomer, updateData)
+      .put(urlCustomer, data)
       .then(function (response) {
         console.log(response);
       })
@@ -109,7 +79,7 @@ export default function CustomerForm() {
   };
   return (
     <>
-      <h1 className="text-muted my-5">CUSTOMER FORM</h1>
+      <h1 className="my-5">CUSTOMER FORM</h1>
       <div className="w-50 m-auto mt-5">
         <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-floating col-6">
@@ -135,7 +105,7 @@ export default function CustomerForm() {
             />
             {/* {errors.mail && <p>This field is required</p>} */}
             <p>{errors.mail ? "Please input valid email type" : ""}</p>
-                <label className="mx-2 form-label">Email</label>
+            <label className="mx-2 form-label">Email</label>
           </div>
           <div className="form-floating col-12">
             <input
@@ -156,61 +126,28 @@ export default function CustomerForm() {
             <label className="mx-2 form-label">Address 2</label>
           </div>
 
-          {/* Chọn tỉnh */}
-          <div className="col-4">
-            <label className="form-label">Tỉnh thành</label>
-            <select
-              className="form-control"
-              defaultValue=""
+          <div className="col-md-6">
+            <label className="form-label">City</label>
+            <input
               {...register("city", { required: false })}
-            >
-              <option value="">Choose...</option>
-              {cities.map((city) => {
-                return <option key={city.code}>{city.name}</option>;
-              })}
-            </select>
-          </div>
-          {/* Chọn quận */}
-          <div className="col-4">
-            <label className="form-label">Quận</label>
-            <select
               className="form-control"
-              defaultValue=""
-              {...register("district", { required: false })}
-            >
-              <option value="">Choose</option>
-              {cities.map((city) => {
-                return city.name === citiesWatch
-                  ? city.districts.map((district) => {
-                      return (
-                        <option key={district.code}>{district.name}</option>
-                      );
-                    })
-                  : null;
-              })}
-            </select>
+            />
           </div>
-          {/* Chọn huyện */}
-          <div className="col-4">
-            <label className="form-label">Huyện</label>
-            <select
+          <div className="col-md-4">
+            <label className="form-label">Phone</label>
+            <input
+              type="text"
+              {...register("phone", { required: false })}
               className="form-control"
-              defaultValue=""
-              {...register("ward", { required: false })}
-            >
-              <option value="">Choose</option>
-              {cities.map((city) => {
-                return city.name === citiesWatch
-                  ? city.districts.map((district) => {
-                      return district.name === districtsWatch
-                        ? district.wards.map((ward) => {
-                            return <option key={ward.code}>{ward.name}</option>;
-                          })
-                        : null;
-                    })
-                  : null;
-              })}
-            </select>
+            />
+          </div>
+          <div className="col-md-2">
+            <label className="form-label">Post Code</label>
+            <input
+              {...register("postcode", { required: false })}
+              type="text"
+              className="form-control"
+            />
           </div>
 
           <div className="col-12">

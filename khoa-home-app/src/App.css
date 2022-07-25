@@ -4,5 +4,43 @@
   margin: 0;
 }
 
-body {text-align: center;}
 
+body {
+  text-align: center;
+  min-height: 100%
+}
+
+.card {
+  max-width: 80%;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  left: 70px;
+}
+
+.gradientBg {
+  background: #ff416c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ff4b2b,
+    #ff416c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ff4b2b,
+    #ff416c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding-bottom: 5%;
+  min-width: 100%;
+  min-height: 100vh;
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+  border-bottom: 1px solid #ccc;
+}
