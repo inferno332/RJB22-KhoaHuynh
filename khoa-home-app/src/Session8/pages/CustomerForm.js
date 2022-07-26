@@ -9,10 +9,18 @@ export default function CustomerForm() {
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({defaultValues: {
+    name: "",
+    mail: "",
+    address1: "",
+    address2: "",
+    phone: "",
+    city: "",
+    postcode: "",
+  }});
   // fetch Customers Form from List
   let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/";
   let urlCustomer =
@@ -41,7 +49,11 @@ export default function CustomerForm() {
       let tempCustomers = fetchDataCustomerList(urlCustomer);
       tempCustomers.then((response) => response);
     }
-  }, []);
+    // Reset input if id dont exist
+    else {
+      reset();
+    }
+  }, [id]);
 
   const onSubmit = (data, e) => {
     e.preventDefault();

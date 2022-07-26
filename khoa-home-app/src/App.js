@@ -86,9 +86,9 @@ function App() {
 
       {/* <LinkTest/> */}
 
-      {/* <Session8/> */}
+      <Session8/>
 
-      <Customer/>
+      {/* <Customer/> */}
     </>
   );
 }

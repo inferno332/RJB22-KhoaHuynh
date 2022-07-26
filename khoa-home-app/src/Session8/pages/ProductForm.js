@@ -9,10 +9,14 @@ export default function ProductForm() {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({defaultValues: {
+    color: "",
+    price: "",
+    description: "",
+  }});
   // fetch Customers Form from List
   let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/products/";
   let urlProduct = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/products/" + id;
@@ -37,7 +41,11 @@ export default function ProductForm() {
       let tempProducts = fetchDataCustomerList(urlProduct);
       tempProducts.then((response) => response);
     }
-  }, []);
+    // Reset input if id dont exist
+    else {
+      reset();
+    }
+  }, [id]);
 
   const onSubmit = (data, e) => {
     e.preventDefault();

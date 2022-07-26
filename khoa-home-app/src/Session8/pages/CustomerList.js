@@ -53,7 +53,7 @@ export default function CustomerList() {
 
     setOpen(false);
   };
-  // Page change
+  
 
   const action = (
     <React.Fragment>
