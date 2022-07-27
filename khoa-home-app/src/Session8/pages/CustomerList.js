@@ -9,6 +9,7 @@ import { Alert } from "@mui/material";
 
 export default function CustomerList() {
   const [customers, setCustomers] = useState([]);
+  console.log(customers);
   const [open, setOpen] = React.useState(false);
   const [pageNum, setPageNum] = useState(1);
   let url = "https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/";
@@ -20,10 +21,8 @@ export default function CustomerList() {
           limit: 10,
         },
       });
-      console.log(pageNum);
       let tempCustomers = await response.data;
       setCustomers(tempCustomers);
-      console.log(customers);
     } catch (err) {
       console.log("Error: ", err.message);
     }

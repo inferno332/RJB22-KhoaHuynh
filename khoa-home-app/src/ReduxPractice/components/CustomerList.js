@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   fetchCustomers,
   deleteCustomers,
+  selectCustomer
 } from "../features/customers/customersSlice";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,13 +13,13 @@ export default function CustomerList() {
   useEffect(() => {
     dispatch(fetchCustomers());
   }, []);
-  const customerList = useSelector((state) => state.customers);
-  console.log(customerList.customers);
-  const [customer, setCustomer] = useState([]);
+  // return customers state
+  const customerList = useSelector((state) => state.customer.customers);
+  console.log((customerList));
 
   const handleDeleteCustomer = (id) => {
     dispatch(deleteCustomers(id));
-  }
+  };
   return (
     <div>
       <h1 className="my-5 text-white">CUSTOMER LIST</h1>
@@ -36,34 +37,36 @@ export default function CustomerList() {
             </tr>
           </thead>
           <tbody>
-            {customerList.customers.map((customer, index) => (
-              <tr key={index}>
-                <th scope="row">{customer.id}</th>
-                <td>{customer.name}</td>
-                <td>{customer.email}</td>
-                <td>{customer.address}</td>
-                <td>{customer.city}</td>
-                <td>{customer.phone}</td>
-                <td>
-                  <Link
-                    type="button"
-                    className="btn btn-success mx-3"
-                    to={`/customerForm/edit/${customer.id}`}
-                  >
-                    Edit
-                  </Link>
-                  <div className="d-inline-block">
-                    <button
+            {customerList.map((customer, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{customer.id}</th>
+                  <td>{customer.name}</td>
+                  <td>{customer.email}</td>
+                  <td>{customer.address}</td>
+                  <td>{customer.city}</td>
+                  <td>{customer.phone}</td>
+                  <td>
+                    <Link
                       type="button"
-                      className="btn btn-danger"
-                      onClick={(e) => handleDeleteCustomer(customer.id, e)}
+                      className="btn btn-success mx-3"
+                      to={`/customerForm/edit/${customer.id}`}
                     >
-                      Delete
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                      Edit
+                    </Link>
+                    <div className="d-inline-block">
+                      <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={(e) => handleDeleteCustomer(customer.id, e)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

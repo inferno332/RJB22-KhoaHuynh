@@ -22,6 +22,7 @@ import Session8 from './Session8';
 import Navigation from './Session8/components/Navigation';
 import Customer from './ReduxPractice';
 import CustomerView from './ReduxPractice';
+import Ss9 from './MoreRedux';
 
 // set base
 axios.defaults.baseURL = 'https://62d16f46d4eb6c69e7dd5d81.mockapi.io/'
@@ -89,7 +90,9 @@ function App() {
 
       {/* <Session8/> */}
 
-      <CustomerView/>
+      {/* <CustomerView/> */}
+
+      <Ss9/>
     </>
   );
 }
