@@ -1,16 +1,40 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+
+const initialState = {
+    customers: [],
+    status: 'idle',
+}
+
+// Generates pending, fulfilled and rejected action types
+export const fetchCustomers = createAsyncThunk('customer/addCustomer',() => {
+    return axios
+    .get('https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/')
+    .then((response) => response.data)
+})
 
 // Slices
-const customersSlice = createSlice ({
-    name: 'customers',
-    initialState: [],
+export const customersSlice = createSlice ({
+    name: 'customer',
+    initialState: initialState,
     reducers: {
-        delCustomer(state, action){},
-        editCustomer(state, action){},
-        loadingCustomer(state, action){},
+        addCustomer: (state, action) => {
+            state.customers.push(action.payload);
+          }
+    },
+    extraReducers: (builder) => {
+        // Xử lý trong reducer với case pending / fulfilled / rejected
+        builder
+        .addCase(fetchCustomers.pending, (state) => {
+            state.status = 'loading';
+        })
+        .addCase(fetchCustomers.fulfilled, (state, action) => {
+            state.status = 'idle';
+            state.customers.push(action.payload);
+        })
     }
 })
 // Actions
-export const { delCustomer, editCustomer, loadingCustomer } = customersSlice.actions
-// Reducers
-export default customersSlice.reducer
+export default customersSlice.reducer;
+export const selectCustomer = (state) => state.customer;
