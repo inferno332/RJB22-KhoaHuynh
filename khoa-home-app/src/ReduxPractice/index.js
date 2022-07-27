@@ -14,7 +14,7 @@ export default function CustomerView() {
       <Provider store={store}>
         <BrowserRouter>
           <Navigation />
-
+          
           <Routes>
             <Route path="/customerList" element={<CustomerList/>}></Route>
             <Route

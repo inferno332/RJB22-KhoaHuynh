@@ -13,6 +13,12 @@ export const fetchCustomers = createAsyncThunk('customer/addCustomer',() => {
     .get('https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/')
     .then((response) => response.data)
 })
+// Delete 
+export const deleteCustomers = createAsyncThunk('customer/delCustomer',(id) => {
+    return axios
+    .delete('https://62d16f46d4eb6c69e7dd5d81.mockapi.io/customers/' + id)
+    .then((response) => response.data)
+})
 
 // Slices
 export const customersSlice = createSlice ({
@@ -21,7 +27,13 @@ export const customersSlice = createSlice ({
     reducers: {
         addCustomer: (state, action) => {
             state.customers.push(action.payload);
-          }
+          },
+        delCustomer: (state, action) => {
+            const customersAfterDeleted = state.customers.filter((element) => {
+                return element.id !== action.id;
+            });
+            return state.customers.push(customersAfterDeleted)
+        }
     },
     extraReducers: (builder) => {
         // Xử lý trong reducer với case pending / fulfilled / rejected
